@@ -10,7 +10,7 @@ export class Course {
     @Column()
     name: string;
     @Column({ type: "text", nullable: true })
-    : string;
+    description: string;
     @Column()
     duration: string;  // Example: "3 months", "6 weeks"
     @ManyToOne(() => teacher, (teacher) => teacher.courses, { onDelete: "CASCADE" })

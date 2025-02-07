@@ -7,6 +7,8 @@ export class CreateCourseDto {
   @IsNotEmpty()
   @IsString()
   duration: string;
+  @IsString()
+  description: string;
   @IsNotEmpty()
   @IsNumber()
   studentId: number;

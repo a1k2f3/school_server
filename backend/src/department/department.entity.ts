@@ -14,7 +14,6 @@ export class Department {
 
     @Column({ type: "text", nullable: true })
     description: string;
-
     @OneToOne(() => teacher,(teacher)=>teacher.department)
     @JoinColumn()
     teacher: teacher;  // Head of Department (One-to-One)
