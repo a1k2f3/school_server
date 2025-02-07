@@ -16,6 +16,7 @@ import { teacher } from './teacher/teacher.entity';
 import { Admin } from 'typeorm';
 import { Course } from './course/course.entity';
 import { Department } from './department/department.entity';
+import { CourseController } from './course/course.controller';
 @Module({
   
   imports: [
@@ -29,7 +30,7 @@ import { Department } from './department/department.entity';
       entities: [student,teacher,Admin,Course,Department],
       synchronize: true,
     }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule],
-  controllers: [StudentController],
+  controllers: [StudentController, CourseController],
   providers: [ StudentService, CourseService, AttendenceService],
 })
 export class AppModule {}

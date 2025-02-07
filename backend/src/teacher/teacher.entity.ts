@@ -1,5 +1,6 @@
+import { Course } from 'src/course/course.entity';
 import { Department } from 'src/department/department.entity';
-import { Entity, Column, PrimaryGeneratedColumn, Unique, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Unique, OneToMany, OneToOne } from 'typeorm';
 @Unique(['Email'])
 @Entity()
 export class  teacher {
@@ -19,4 +20,6 @@ export class  teacher {
   department: Department[];
   @Column()
   image: string; 
+  @OneToOne(() => Course, (course) =>course.teacher )
+    courses: Course[];
 }

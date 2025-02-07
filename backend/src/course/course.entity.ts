@@ -19,7 +19,7 @@ export class Course {
     @Column()
     duration: string;  // Example: "3 months", "6 weeks"
 
-    @ManyToOne(() => teacher, (teacher) => teacher.id, { onDelete: "CASCADE" })
+    @ManyToOne(() => teacher, (teacher) => teacher.courses, { onDelete: "CASCADE" })
     teacher: teacher;
     @OneToOne(() => Department, (department) =>department.courses )
     department: Department; 

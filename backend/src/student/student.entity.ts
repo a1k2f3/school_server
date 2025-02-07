@@ -18,5 +18,5 @@ export class student {
   @Column()
   image: string; 
   @OneToOne(() => Course, (course) =>course.student )
-    courses: student[];
+    courses: Course[];
 }
