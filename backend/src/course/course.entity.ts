@@ -23,9 +23,9 @@ export class Course {
     teacher: teacher;
     @OneToOne(() => Department, (department) =>department.courses )
     department: Department; 
-    @ManyToMany(() => student, (student) => student.id)
-    @JoinTable()
-    students: student[];
+    @ManyToOne(() => student, (student) => student.courses)
+    
+    student: student[];
 
     @CreateDateColumn()
     createdAt: Date;
