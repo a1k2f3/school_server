@@ -17,6 +17,7 @@ import { Admin } from 'typeorm';
 import { Course } from './course/course.entity';
 import { Department } from './department/department.entity';
 import { CourseController } from './course/course.controller';
+import { HOD } from './hod/hod.entity';
 @Module({
   
   imports: [
@@ -27,7 +28,7 @@ import { CourseController } from './course/course.controller';
       username: 'root',
       password: '',
       database: 'school',
-      entities: [student,teacher,Admin,Course,Department],
+      entities: [student,teacher,Admin,Course,Department,HOD],
       synchronize: true,
     }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule],
   controllers: [StudentController, CourseController],

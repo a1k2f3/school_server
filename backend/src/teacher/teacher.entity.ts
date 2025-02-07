@@ -16,7 +16,7 @@ export class  teacher {
   date: Date;  
   @Column()
   password: string;
-  @OneToMany(() => Department, (department) => department)
+  @OneToMany(() => Department, (department) => department.teacher)
   department: Department[];
   @Column()
   image: string; 
