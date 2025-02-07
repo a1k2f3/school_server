@@ -12,10 +12,7 @@ export class Course {
     @Column({ type: "text", nullable: true })
     description: string;
     @Column()
-    credits: number
-    @Column()
     duration: string;  // Example: "3 months", "6 weeks"
-
     @ManyToOne(() => teacher, (teacher) => teacher.courses, { onDelete: "CASCADE" })
     teacher: teacher;
     @OneToOne(() => Department, (department) =>department.courses )
@@ -24,7 +21,7 @@ export class Course {
     student: student[];
     @CreateDateColumn()
     createdAt: Date;
-
     @UpdateDateColumn()
     updatedAt: Date;
 }
+

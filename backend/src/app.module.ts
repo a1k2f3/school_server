@@ -18,6 +18,8 @@ import { Course } from './course/course.entity';
 import { Department } from './department/department.entity';
 import { CourseController } from './course/course.controller';
 import { HOD } from './hod/hod.entity';
+import { CourseModule } from './course/course.module';
+import { Attendance } from './attendence/Attendence.entity';
 @Module({
   
   imports: [
@@ -28,9 +30,9 @@ import { HOD } from './hod/hod.entity';
       username: 'root',
       password: '',
       database: 'school',
-      entities: [student,teacher,Admin,Course,Department,HOD],
+      entities: [student,teacher,Admin,Course,Department,HOD,Attendance],
       synchronize: true,
-    }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule],
+    }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule, CourseModule],
   controllers: [StudentController, CourseController],
   providers: [ StudentService, CourseService, AttendenceService],
 })
