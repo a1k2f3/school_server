@@ -10,7 +10,7 @@ export class Admin {
   name: string;
 
   @Column()
-  Email: string;
+  email: string;
 
   @Column()
   contact: number;

@@ -31,7 +31,9 @@ import { Attendance } from './attendence/Attendence.entity';
       password: '',
       database: 'school',
       entities: [student,teacher,Admin,Course,Department,HOD,Attendance],
-      synchronize: true,
+      synchronize: false,
+      migrations: ['src/migrations/*.ts'],
+      migrationsRun: true, // ✅
     }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule, CourseModule],
   controllers: [StudentController, CourseController],
   providers: [ StudentService, CourseService, AttendenceService],
