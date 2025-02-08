@@ -11,7 +11,7 @@ import { AdminModule } from './admin/admin.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { StudentModule } from './student/student.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { student } from './student/student.entity';
+import { Student } from './student/student.entity';
 import { teacher } from './teacher/teacher.entity';
 import { Admin } from 'typeorm';
 import { Course } from './course/course.entity';
@@ -30,7 +30,7 @@ import { Attendance } from './attendence/Attendence.entity';
       username: 'root',
       password: '',
       database: 'school',
-      entities: [student,teacher,Admin,Course,Department,HOD,Attendance],
+      entities: [Student,teacher,Admin,Course,Department,HOD,Attendance],
       synchronize: true,
     }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule, CourseModule],
   controllers: [StudentController, CourseController],

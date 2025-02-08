@@ -3,10 +3,10 @@ import { HodService } from './hod.service';
 import { HodController } from './hod.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HOD } from './hod.entity';
+import { Department } from 'src/department/department.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([HOD])],
-  
+  imports: [TypeOrmModule.forFeature([HOD,Department])],
   providers: [HodService],
   controllers: [HodController]
 })

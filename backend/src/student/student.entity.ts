@@ -1,22 +1,19 @@
-import { Course } from 'src/course/course.entity';
-import { Entity, Column, PrimaryGeneratedColumn, Unique, OneToOne, OneToMany } from 'typeorm';
-@Unique(['Email'])
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Department } from '../department/department.entity';
+import { Course } from '../course/course.entity';
+
 @Entity()
-export class student {
+export class Student {  // ✅ Ensure class name is capitalized as "Student"
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   name: string;
-  @Column()
-  Email: string;
-  @Column()
-  contact: number;
-  @Column()
-  date: Date;  
-  @Column()
-  password: string;
-  @Column()
-  image: string; 
-  @OneToMany(() => Course, (course) =>course.student )
-    courses: Course[];
+
+  @ManyToOne(() => Department, (department) => department.student)
+  department: Department;
+
+  @ManyToMany(() => Course)
+  @JoinTable()
+  courses: Course[];
 }

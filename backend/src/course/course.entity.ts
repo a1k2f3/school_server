@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, JoinColumn } from "typeorm";
 import { teacher } from "src/teacher/teacher.entity";
-import { student } from "src/student/student.entity";
+import { Student } from "src/student/student.entity";
 import { Department } from "src/department/department.entity";
 @Entity()
 export class Course {
@@ -18,8 +18,8 @@ export class Course {
     @OneToOne(() => Department, (department) =>department.courses )
     @JoinColumn()
     department: Department; 
-    @ManyToOne(() => student, (student) => student.courses)
-    student: student[];
+    @ManyToOne(() => Student, (student) => student.courses)
+    student: Student[];
     @CreateDateColumn()
     createdAt: Date;
     @UpdateDateColumn()

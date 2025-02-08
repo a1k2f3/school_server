@@ -4,19 +4,20 @@ import { Repository } from 'typeorm';
 import { Department } from './department.entity';
 import { teacher } from 'src/teacher/teacher.entity';
 import { HOD } from 'src/hod/hod.entity';
+import { Course } from 'src/course/course.entity';
 
 @Injectable()
 export class DepartmentService {
   constructor(
     @InjectRepository(Department)
     private readonly departmentRepository: Repository<Department>,
+    @InjectRepository(teacher)
+    private readonly teacherRepository: Repository<teacher>,
     @InjectRepository(HOD)
-    private readonly hodRepository: Repository<HOD>
-    // @InjectRepository(Course)
-    // private readonly hodRepository: Repository<HOD>
-  
+    private readonly hodRepository: Repository<HOD>,
+    @InjectRepository(Course)
+    private readonly courseRepository: Repository<Course>
 ) {}
-
   async create(departmentData: Partial<Department>): Promise<Department> {
     const department = this.departmentRepository.create(departmentData);
     return await this.departmentRepository.save(department);

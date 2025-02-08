@@ -1,15 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, Unique } from "typeorm";
 import { teacher } from "src/teacher/teacher.entity";
 import { Course } from "src/course/course.entity";
-import { student } from "src/student/student.entity";
+import { Student } from "src/student/student.entity";
 import { HOD } from "src/hod/hod.entity";
 
 @Entity()
 export class Department {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
+    @Column({ unique: true })
+    
     name: string;
 
     @Column({ type: "text", nullable: true })
@@ -23,9 +23,9 @@ export class Department {
     @OneToMany(() => Course, (course) => course.department)
     @JoinColumn()
     courses: Course[];  // A department can have multiple courses (One-to-Many)
-    @OneToOne(() => student, (student) => student.id)
+    @OneToOne(() => Student, (student) => student.department)
     @JoinColumn()
-    student: student[];
+    student: Student[];
     @CreateDateColumn()
     createdAt: Date;
     @UpdateDateColumn()

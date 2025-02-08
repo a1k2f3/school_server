@@ -2,16 +2,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { HOD } from './hod.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Department } from 'src/department/department.entity';
 
 @Injectable()
 export class HodService {
     constructor(
       
+        @InjectRepository(Department)
+        private readonly departmentRepository: Repository<Department>,
         @InjectRepository(HOD)
         private readonly hodRepository: Repository<HOD>
-
-        // @InjectRepository(Course)
-        // private readonly hodRepository: Repository<HOD>
       
     ) {}
     
@@ -21,11 +21,11 @@ export class HodService {
       }
     
       async findAll() {
-        return await this.hodRepository.find({ relations: ['teacher', 'hod', 'courses'] });
+        return await this.hodRepository.find({ relations: ['department'] });
       }
     
       async findOne(id: number) {
-        const hod = await this.hodRepository.findOne({ where: { id }, relations: ['departmen'] });
+        const hod = await this.hodRepository.findOne({ where: { id }, relations: ['department'] });
         if (!hod) {
           throw new NotFoundException(`Department with ID ${id} not found`);
         }

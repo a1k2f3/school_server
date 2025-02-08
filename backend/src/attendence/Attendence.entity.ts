@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 // import { User } from 'src/user/user.entity';
-import { student } from 'src/student/student.entity';
+import { Student } from 'src/student/student.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Entity()
 export class Attendance {
   @PrimaryGeneratedColumn()
   id: number;
-  @ManyToOne(() => student, (user) => user ,{ eager: true, onDelete: 'CASCADE' })
-  Student: student;
+  @ManyToOne(() => Student, (user) => user ,{ eager: true, onDelete: 'CASCADE' })
+  Student: Student;
   @Column({ type: 'date' })
   date: Date;
   @Column({ type: 'time', nullable: true })
