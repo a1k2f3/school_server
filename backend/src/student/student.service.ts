@@ -1,15 +1,36 @@
-import { Injectable, UnauthorizedException, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, Repository } from 'typeorm';
-import { JwtService } from '@nestjs/jwt';
-import { join } from 'path';
-import * as fs from 'fs';
-import { v4 as uuidv4 } from 'uuid';
+import { Repository } from 'typeorm';
 import { student } from './student.entity';
-import { Course } from 'src/course/course.entity';
-import { CreateCourseDto } from './course.dto';
-
 @Injectable()
 export class StudentService {
+//   constructor(
+//     @InjectRepository(student)
+//     private readonly studentRepository: Repository<student>,
+//   ) {}
 
+//   async create(studentData: Partial<student>){
+//     const student = this.studentRepository.create(studentData);
+//     return await this.studentRepository.save(student);
+//   }
+
+//   async findAll() {
+//     return await this.studentRepository.find({ relations: ['courses'] });
+//   }
+
+//   async findOne(id: number) {
+//     return await this.studentRepository.findOne({
+//       where: { id },
+//       relations: ['courses'],
+//     });
+//   }
+
+//   async update(id: number, updateData: Partial<student>) {
+//     await this.studentRepository.update(id, updateData);
+//     return this.findOne(id);
+//   }
+
+//   async delete(id: number) {
+//     await this.studentRepository.delete(id);
+//   }
 }

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, JoinColumn } from "typeorm";
 import { teacher } from "src/teacher/teacher.entity";
 import { student } from "src/student/student.entity";
 import { Department } from "src/department/department.entity";
@@ -16,6 +16,7 @@ export class Course {
     @ManyToOne(() => teacher, (teacher) => teacher.courses, { onDelete: "CASCADE" })
     teacher: teacher;
     @OneToOne(() => Department, (department) =>department.courses )
+    @JoinColumn()
     department: Department; 
     @ManyToOne(() => student, (student) => student.courses)
     student: student[];

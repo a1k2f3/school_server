@@ -18,10 +18,13 @@ export class Department {
     @JoinColumn()
     teacher: teacher;  // Head of Department (One-to-One)
     @OneToOne(() => HOD, (hod) => hod.department, { cascade: true })
+    @JoinColumn()
     hod: HOD;
     @OneToMany(() => Course, (course) => course.department)
+    @JoinColumn()
     courses: Course[];  // A department can have multiple courses (One-to-Many)
     @OneToOne(() => student, (student) => student.id)
+    @JoinColumn()
     student: student[];
     @CreateDateColumn()
     createdAt: Date;
