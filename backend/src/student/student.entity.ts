@@ -13,7 +13,7 @@ export class student {  // ✅ Ensure class name is capitalized as "Student"
   @ManyToOne(() => Department, (department) => department.student)
   department: Department;
 
-  @ManyToMany(() => Course)
+  @ManyToOne(() => Course, (course) => course.student)
   @JoinTable()
   courses: Course[];
 }
