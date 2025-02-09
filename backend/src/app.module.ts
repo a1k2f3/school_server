@@ -21,8 +21,7 @@ import { CourseController } from './course/course.controller';
 import { HOD } from './hod/hod.entity';
 import { CourseModule } from './course/course.module';
 import { Attendance } from './attendence/Attendence.entity';
-import { Admin2Module } from './admin2/admin2.module';
-import { Adminfinal } from './admin2/Admin2.entity';
+
 @Module({
   
   imports: [
@@ -33,11 +32,11 @@ import { Adminfinal } from './admin2/Admin2.entity';
       username: 'root',
       password: '',
       database: 'school',
-      entities: [student,teacher,Admin,Course,Department,HOD,Attendance,Adminfinal],
+      entities: [student,teacher,Admin,Course,Department,HOD,Attendance],
       synchronize: false,
       migrations: ['src/migrations/*.ts'],
       migrationsRun: true, // ✅
-    }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule, CourseModule, Admin2Module],
+    }),StudentModule, TeacherModule, AdminModule, DepartmentModule, AttendenceModule, HodModule, CourseModule],
   controllers: [StudentController, CourseController],
   providers: [ StudentService, CourseService, AttendenceService],
 })
