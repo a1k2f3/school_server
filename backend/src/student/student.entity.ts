@@ -20,7 +20,6 @@ export class student {  // ✅ Ensure class name is capitalized as "Student"
    image:string
   @ManyToOne(() => Department, (department) => department.student)
   department: Department;
-
   @ManyToOne(() => Course, (course) => course.student)
   @JoinTable()
   courses: Course[];

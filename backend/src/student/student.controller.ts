@@ -10,7 +10,6 @@ export class StudentController {
   async create(@Body() studentData: Partial<student>) {
     return this.studentService.create(studentData);
   }
-
   @Get()
   async findAll() {
     return this.studentService.findAll();
