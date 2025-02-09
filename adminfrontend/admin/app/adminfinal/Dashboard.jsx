@@ -1,9 +1,7 @@
 "use client "
 import { FiSearch } from 'react-icons/fi';
-// import Sidebar from './AdminComponents';
 import Chart from './Chart';
 import Sidebar from './AdminComponents';
-
 export default function Dashboard() {
   return (
     <div className="flex h-screen bg-gray-100">

@@ -5,10 +5,7 @@ import Sidebar from "../adminfinal/AdminComponents";
 const Page = () => {
   const [courses, setCourses] = useState([]);
   const [search, setSearch] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [newCourse, setNewCourse] = useState({ name: "", code: "" });
-  const [editCourse, setEditCourse] = useState(null);
+  const [dialog, setDialog] = useState({ isOpen: false, type: "add", course: { name: "", code: "" } });
 
   useEffect(() => {
     setCourses([
@@ -17,34 +14,24 @@ const Page = () => {
     ]);
   }, []);
 
-  const handleAddCourse = () => {
-    setCourses([...courses, { id: courses.length + 1, ...newCourse }]);
-    setNewCourse({ name: "", code: "" });
-    setIsDialogOpen(false);
+  const handleSaveCourse = () => {
+    if (dialog.type === "add") {
+      setCourses([...courses, { id: courses.length + 1, ...dialog.course }]);
+    } else {
+      setCourses(
+        courses.map((course) => (course.id === dialog.course.id ? dialog.course : course))
+      );
+    }
+    setDialog({ isOpen: false, type: "add", course: { name: "", code: "" } });
   };
 
   const handleDelete = (id) => {
     setCourses(courses.filter((course) => course.id !== id));
   };
 
-  const handleEdit = (course) => {
-    setEditCourse(course);
-    setIsEditDialogOpen(true);
-  };
-
-  const handleUpdateCourse = () => {
-    setCourses(
-      courses.map((course) =>
-        course.id === editCourse.id ? editCourse : course
-      )
-    );
-    setEditCourse(null);
-    setIsEditDialogOpen(false);
-  };
-
   return (
     <div className="flex">
-      <Sidebar/>
+      <Sidebar />
       <div className="container mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">Course Management</h1>
         <div className="flex justify-between mb-4">
@@ -56,7 +43,7 @@ const Page = () => {
           />
           <button 
             className="bg-blue-500 text-white px-4 py-2 rounded" 
-            onClick={() => setIsDialogOpen(true)}
+            onClick={() => setDialog({ isOpen: true, type: "add", course: { name: "", code: "" } })}
           >
             Add Course
           </button>
@@ -83,7 +70,7 @@ const Page = () => {
                     <td className="border p-2">
                       <button 
                         className="bg-yellow-500 text-white px-3 py-1 rounded mr-2" 
-                        onClick={() => handleEdit(course)}
+                        onClick={() => setDialog({ isOpen: true, type: "edit", course })}
                       >
                         Edit
                       </button>
@@ -100,68 +87,34 @@ const Page = () => {
           </table>
         </div>
 
-        {isDialogOpen && (
+        {dialog.isOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div className="bg-white p-6 rounded shadow-lg">
-              <h2 className="text-lg font-bold mb-2">Add New Course</h2>
+              <h2 className="text-lg font-bold mb-2">{dialog.type === "add" ? "Add New Course" : "Edit Course"}</h2>
               <input 
                 className="border p-2 w-full rounded mb-2" 
                 placeholder="Course Name" 
-                value={newCourse.name} 
-                onChange={(e) => setNewCourse({ ...newCourse, name: e.target.value })} 
+                value={dialog.course.name} 
+                onChange={(e) => setDialog({ ...dialog, course: { ...dialog.course, name: e.target.value } })} 
               />
               <input 
                 className="border p-2 w-full rounded mb-2" 
                 placeholder="Course Code" 
-                value={newCourse.code} 
-                onChange={(e) => setNewCourse({ ...newCourse, code: e.target.value })} 
+                value={dialog.course.code} 
+                onChange={(e) => setDialog({ ...dialog, course: { ...dialog.course, code: e.target.value } })} 
               />
               <div className="flex justify-end space-x-2">
                 <button 
                   className="bg-gray-500 text-white px-4 py-2 rounded" 
-                  onClick={() => setIsDialogOpen(false)}
+                  onClick={() => setDialog({ isOpen: false, type: "add", course: { name: "", code: "" } })}
                 >
                   Cancel
                 </button>
                 <button 
                   className="bg-green-500 text-white px-4 py-2 rounded" 
-                  onClick={handleAddCourse}
+                  onClick={handleSaveCourse}
                 >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {isEditDialogOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-            <div className="bg-white p-6 rounded shadow-lg">
-              <h2 className="text-lg font-bold mb-2">Edit Course</h2>
-              <input 
-                className="border p-2 w-full rounded mb-2" 
-                placeholder="Course Name" 
-                value={editCourse?.name} 
-                onChange={(e) => setEditCourse({ ...editCourse, name: e.target.value })} 
-              />
-              <input 
-                className="border p-2 w-full rounded mb-2" 
-                placeholder="Course Code" 
-                value={editCourse?.code} 
-                onChange={(e) => setEditCourse({ ...editCourse, code: e.target.value })} 
-              />
-              <div className="flex justify-end space-x-2">
-                <button 
-                  className="bg-gray-500 text-white px-4 py-2 rounded" 
-                  onClick={() => setIsEditDialogOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button 
-                  className="bg-green-500 text-white px-4 py-2 rounded" 
-                  onClick={handleUpdateCourse}
-                >
-                  Update
+                  {dialog.type === "add" ? "Add" : "Update"}
                 </button>
               </div>
             </div>
