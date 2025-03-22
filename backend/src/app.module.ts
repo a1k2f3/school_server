@@ -39,15 +39,22 @@ config();
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: "postgres://akif:npg_P3wjy8kfYVIt@ep-dawn-rain-a56zqt5d-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require",
+      url: process.env.DB_HOST, // ✅ Add this if using separate values
+      port: 5432, // ✅ Ensure the port is correct
+      username: process.env.DATABASE_USER, // ✅ Fixed variable name
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, // ⚠️ Only for development, remove in production
+      synchronize: true,
       extra: {
-        ssl: {
-          rejectUnauthorized: false, // Required for NeonDB
-        },
+        family: 4, 
+      },
+      logging: ['error', 'schema'],
+      ssl: {
+        rejectUnauthorized: false,
       },
     }),
+    ,
     StudentModule,
     TeacherModule,
     AdminModule,
