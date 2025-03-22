@@ -1,14 +1,25 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { StudentService } from './student.service';
-import { student } from './student.entity';
+import { student} from './student.entity';
 
 @Controller('student')
 export class StudentController {
-  constructor(private readonly studentService: StudentService) {}
-
+  constructor(private readonly studentService: StudentService,    
+  ) {}
   @Post()
-  async create(@Body() studentData: Partial<student>) {
+  async create(@Body() studentData) {
     return this.studentService.create(studentData);
+  }
+  @Post('/assignment')
+  async createAssignment(@Body() assignmentData ) {
+    return this.studentService.createAssignment(assignmentData);
+  }
+  @Post('/:studentId/assign/:assignmentId')
+  async assignAssignment(
+    @Param('studentId') studentId: string,
+    @Param('assignmentId') assignmentId: string,
+  ) {
+    return this.studentService.assignAssignmentToStudent(Number(studentId), Number(assignmentId));
   }
   @Get()
   async findAll() {
@@ -16,17 +27,17 @@ export class StudentController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number) {
-    return this.studentService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return this.studentService.findOne(Number(id));
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateData: Partial<student>) {
-    return this.studentService.update(id, updateData);
+  async update(@Param('id') id: string, @Body() updateData) {
+    return this.studentService.update(Number(id), updateData);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number) {
-    return this.studentService.delete(id);
+  async delete(@Param('id') id: string) {
+    return this.studentService.delete(Number(id));
   }
 }

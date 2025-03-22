@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "description": "",
   "author": "",
+
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
+    "typeorm": "typeorm",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -20,7 +22,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/platform-express": "^10.0.0",
@@ -29,6 +33,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "mysql2": "^3.12.0",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",

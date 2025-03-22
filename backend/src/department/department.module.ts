@@ -9,7 +9,6 @@ import { Course } from 'src/course/course.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Department,teacher,HOD,Course])],
-  
   providers: [DepartmentService],
   controllers: [DepartmentController]
 })

@@ -10,25 +10,18 @@ export class Course {
 
   @Column()
   name: string;
-
   @Column({ type: 'text', nullable: true })
   description: string;
-
   @Column()
   duration: string;  
-
   @ManyToOne(() => teacher, (teacher) => teacher.courses, { onDelete: 'CASCADE' })
   teacher: teacher;
-
   @ManyToOne(() => Department, (department) => department.courses)
   department: Department;
-
   @OneToMany(() => student, (student) => student.courses)
   student: student[];
-
   @CreateDateColumn()
   createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
 }
