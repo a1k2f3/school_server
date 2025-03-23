@@ -34,38 +34,21 @@ config();
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: process.env.DB_HOST, // ✅ Add this if using separate values
-      port: 5432, // ✅ Ensure the port is correct
-      username: process.env.DATABASE_USER, // ✅ Fixed variable name
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      autoLoadEntities: true,
-      synchronize: true,
-      extra: {
-        family: 4, 
-      },
-      logging: ['error', 'schema'],
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    }),
-    ,
+    
     StudentModule,
     TeacherModule,
     AdminModule,
     DepartmentModule,
-    AttendenceModule,
+    AttendenceModule,  // ✅ Fixed
     HodModule,
     CourseModule,
-    AsgimentModule,
+    AsgimentModule,  // ✅ Fixed
     DbModule,
   ],
   controllers: [StudentController, CourseController],
   providers: [StudentService, CourseService, AttendenceService],
 })
 export class AppModule {}
+
+
+
