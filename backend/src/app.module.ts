@@ -11,7 +11,7 @@ import { CourseModule } from './course/course.module';
 import { AsgimentModule } from './asgiment/asgiment.module';
 import { DbModule } from './db/db.module';
 
-// Entities
+// Entities 
 import { student } from './student/student.entity';
 import { teacher } from './teacher/teacher.entity';
 import { Admin } from './admin/admin.entity';
@@ -42,6 +42,7 @@ config();
       synchronize: false,
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
     }),
+    TypeOrmModule.forFeature([student, teacher, Course, Department,Admin,HOD,Attendance,Assignment]),
     StudentModule,
     TeacherModule,
     AdminModule,
@@ -52,6 +53,7 @@ config();
     AsgimentModule,  // ✅ Fixed
 
   ],
+  
   controllers: [StudentController, CourseController],
   providers: [StudentService, CourseService, AttendenceService],
 })
