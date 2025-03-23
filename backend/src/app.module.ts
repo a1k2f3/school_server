@@ -40,7 +40,7 @@ config();
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: false,
-      ssl: { rejectUnauthorized: false },
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
     }),
     StudentModule,
     TeacherModule,
