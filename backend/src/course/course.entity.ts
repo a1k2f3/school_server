@@ -7,7 +7,6 @@ import { student } from 'src/student/student.entity';
 export class Course {
   @PrimaryGeneratedColumn()
   id: number;
-
   @Column()
   name: string;
   @Column({ type: 'text', nullable: true })

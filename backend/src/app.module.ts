@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { StudentModule } from './student/student.module';
 import { TeacherModule } from './teacher/teacher.module';
@@ -30,11 +30,18 @@ import { AttendenceService } from './attendence/attendence.service';
 
 // Load environment variables
 import { config } from 'dotenv';
+import { TypeOrmModule } from '@nestjs/typeorm';
 config();
 
 @Module({
   imports: [
-    
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
+      synchronize: false,
+      ssl: { rejectUnauthorized: false },
+    }),
     StudentModule,
     TeacherModule,
     AdminModule,
@@ -43,7 +50,7 @@ config();
     HodModule,
     CourseModule,
     AsgimentModule,  // ✅ Fixed
-    DbModule,
+
   ],
   controllers: [StudentController, CourseController],
   providers: [StudentService, CourseService, AttendenceService],

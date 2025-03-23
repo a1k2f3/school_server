@@ -19,7 +19,7 @@ config({
       ssl: {
         rejectUnauthorized: false, // Required for NeonDB
       },
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
     }),
   ],
